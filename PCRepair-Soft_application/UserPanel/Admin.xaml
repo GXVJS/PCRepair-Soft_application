@@ -1,0 +1,112 @@
+﻿<Page x:Class="PCRepair_Soft_application.UserPanel.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PCRepair_Soft_application.UserPanel"
+        mc:Ignorable="d"
+        Title="Admin" MinHeight="600" MinWidth="900">
+    <Page.Resources>
+        <BitmapImage x:Key="defaultImage" UriSource="/Resources/picture.png" />
+    </Page.Resources>
+    <Grid Background="#424242">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0"
+                Orientation="Vertical"
+                VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 50 0">
+                <Label Content="Сортировать по дате:" Foreground="White"/>
+                <ComboBox Name="cmbCena" SelectedIndex="0"
+                          VerticalAlignment="Center" MinWidth="180"
+                          SelectionChanged="cmbCena_SelectionChanged"
+                          ItemsSource="{Binding SortList}"/>
+                <!--<RadioButton GroupName="Price"
+                             Tag="1"
+                             Content="по возрастанию"
+                             IsChecked="True"
+                             Checked="RadioButton_Checked"
+                             VerticalContentAlignment="Center"/>
+                <RadioButton GroupName="Price"
+                             Tag="2"
+                             Content="по убыванию"
+                             Checked="RadioButton_Checked_1"
+                             VerticalContentAlignment="Center"/>-->
+            </StackPanel>
+
+            <UniformGrid Grid.Column="1" Columns="1" Rows="2" Margin="0 0 120 0">
+                <Label Content="Филтрация :" HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom" Foreground="White"/>
+                <ComboBox x:Name="cmbFiltr" VerticalAlignment="Top"
+                          SelectionChanged="cmbFiltr_SelectionChanged"
+                          Height="25" Width="250"
+                          SelectedIndex="0"
+                          ItemsSource="{Binding DiscNames}" DisplayMemberPath="name_job"/>
+            </UniformGrid>
+
+            <UniformGrid Grid.Column="2" Columns="1" Rows="2" Margin="0 0 120 0">
+                <Label Content="Поиск:" VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="txtPoisk" VerticalAlignment="Top"
+                         TextChanged="txtPoisk_TextChanged"
+                         Height="25" Width="250" Foreground="White"/>
+            </UniformGrid>
+
+        </Grid>
+        <ListView x:Name="listProduct" Grid.Row="1" SelectionChanged="listProduct_SelectionChanged" MouseDoubleClick="listProduct_MouseDoubleClick" >
+            <ListView.ItemContainerStyle>
+
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="MaxWidth" Value="{Binding ElementName=listProduct, Path=Width}"/>
+                    </Style>
+
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="White" CornerRadius="5" MinWidth="950" Background="#6B6B6B">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                        </Border.Effect>
+
+                        <Grid Margin="10" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="520"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Width="150" Height="150" Source="{Binding ImagePreview, FallbackValue={StaticResource defaultImage}}"/>
+
+                                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="15 0 0 0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding NameWork}" FontSize="15" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Text="{Binding Date}" Style="{StaticResource txtWrap}" Foreground="White"/>
+                                <TextBlock Text="{Binding SotrudnikName}" Foreground="White"/>
+                                <TextBlock Text="{Binding NameWorking}" Foreground="White"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <TextBlock Text="{Binding CostString}" Margin="3" Foreground="White"/>
+                                        <TextBlock Text="{Binding CostString2}" Margin="3" Foreground="White"/>
+                                        <TextBlock Text="{Binding Sale}" Margin="3" Foreground="White"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        <Button Content="Добавить" Grid.Row="2" Width="200" x:Name="AddButton" Click="AddButton_Click"/>
+        <Button Content="Добавить Сотрудника" Grid.Row="2" Width="200" x:Name="AddUser" Margin="590,8,180,10" Click="AddUser_Click"/>
+
+    </Grid>
+</Page>

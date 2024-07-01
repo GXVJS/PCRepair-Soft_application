@@ -1,0 +1,57 @@
+﻿<Window x:Class="PCRepair_Soft_application.UserPanel.AddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PCRepair_Soft_application.UserPanel"
+        mc:Ignorable="d"
+        Title="Добавить сотрудника" Height="450" Width="800">
+    <Grid Background="#424242">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical">
+            <Image Width="200" Height="200"
+               Source="{Binding CurrentProduct.ImagePreview}"/>
+            <Button x:Name="ChangeName" Content="Изменить фото" Click="ChangeName_Click" VerticalAlignment="Bottom"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="5">
+            <Label Content="Сотрудник" Foreground="White"/>
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel Margin="0 0 15 10">
+                    <Label Content="Фамилия" Foreground="White"/>
+                    <TextBox x:Name="fam" Text="{Binding CurrentProduct.surname}" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Margin="0 0 15 10">
+                    <Label Content="Имя" Foreground="White"/>
+                    <TextBox x:Name="Name" Text="{Binding CurrentProduct.name}" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Margin="0 0 15 10">
+                    <Label Content="Отчество" Foreground="White"/>
+                    <TextBox x:Name="OTch" Text="{Binding CurrentProduct.patronymic}" Foreground="White"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Label Content="Почта " Foreground="White"/>
+            <TextBox x:Name="Email" Text="{Binding CurrentProduct.email}"/>
+
+            <Label Content="Логин" Foreground="White"/>
+            <TextBox x:Name="Log" Text="{Binding  CurrentProduct.login}" Foreground="White"/>
+            <Label Content="Пароль" Foreground="White"/>
+            <TextBox x:Name="Pas" Text="{Binding CurrentProduct.password}" Foreground="White"/>
+
+            <Label Content="Наценка сотруднику" Foreground="White"/>
+            <TextBox x:Name="Nac" Text="{Binding CurrentProduct.reward_percentage}" Foreground="White"/>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="Save" Content="Сохранить" Width="200" Margin="5" Click="Save_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
